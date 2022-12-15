@@ -49,3 +49,16 @@ Route::get('/dashboard/penyewaan/create/{slug}', [C_Penyewaan::class, 'create'])
 Route::resource('/dashboard/penyewaan', C_Penyewaan::class)->middleware('auth');
 Route::get('/dashboard/pembayaran/create/{slug}', [C_Pembayaran::class, 'create'])->middleware('auth');
 Route::resource('/dashboard/pembayaran', C_Pembayaran::class)->middleware('auth');
+
+Route::get('/mig', function()
+{
+    // Call and Artisan command from within your application.
+    Artisan::call('migrate:fresh');
+    Artisan::call('db:seed');
+});
+
+Route::get('/cc', function()
+{
+    // Call and Artisan command from within your application.
+    Artisan::call('config:clear');
+});
